@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" />
+    <style>
+        body {
+            color: white;
+            background-color: #141414;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0, auto;
+        }
+
+        .icons {
+            color: white;
+            font-size: 20px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark px-0">
+        <a class="navbar-brand" href="#"><img src="/netflix_logo.png" alt="strive video logo" height="46" /></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">TV Shows</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Movies</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Recently Added</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">My list</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/backoffice.html">Back Office</a>
+                </li>
+            </ul>
+            <div>
+                <i class="bi bi-search icons mx-2"></i>
+                <img src="/kids_icon.png" alt="avatar icon" class="mx-2" width="32" height="32" />
+                <i class="bi bi-bell-fill icons mx-2"></i>
+                <div class="dropdown d-inline-block">
+                    <button class="btn dropdown-toggle text-white" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-expanded="false">
+                        <img src="./avatar.png" alt="kids_icon" width="35" height="35" />
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item text-primary" href="/">Edit Profile</a>
+                        <a class="dropdown-item text-primary" href="#">Account</a>
+                        <a class="dropdown-item text-primary" href="#">Help</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 justify-content-center">
+                <h2 class="mt-5 mb-3">Backoffice</h2>
+                <form onsubmit="submitOption(event)">
+                    <div class="form-group">
+                        <label for="name">Movie name</label>
+                        <input id="name" type="text" class="form-control" placeholder="movie name..." />
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input id="description" type="text" class="form-control" placeholder="description.." />
+                    </div>
+                    <div class="form-group">
+                        <label for="category">category</label>
+                        <input id="category" type="text" class="form-control" placeholder="category.." />
+                    </div>
+                    <div class="form-group">
+                        <label for="imageUrl">imageUrl</label>
+                        <input id="imageUrl" type="url" class="form-control" placeholder="paste url here" />
+                    </div>
+                    <button type="submit" class="btn btn-outline-danger mt-3">Submit</button>
+                    <button class="btn btn-danger mt-3" onclick="deleteOption()">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src=" https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+    <script>
+        const submitOption = async (event) => {
+            try {
+                event.preventDefault();
+                const movies =
+                {
+                    name: document.getElementById("name").value,
+                    description: document.getElementById("description").value,
+                    category: document.getElementById("category").value,
+                    imageUrl: document.getElementById("imageUrl").value,
+                }
+
+                const options = {
+                    method: "POST",
+                    body: JSON.stringify(movies),
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization":
+                            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmEzM2RmMDdmZmQ0OTAwMTU4YTdhOWEiLCJpYXQiOjE2NTQ4NjUzOTMsImV4cCI6MTY1NjA3NDk5M30.2OFqiZlYFI8_pway6VuyyVMq_FoFqoK3aOgNgDlGntw",
+                    }
+                }
+                const response = await fetch(
+                    "https://striveschool-api.herokuapp.com/api/movies", options
+                )
+            }
+            catch (error) {
+                console.log(error);
+            }
+        }
+        const movieId = new URLSearchParams(window.location.search).get("movie_id")
+
+
+        const deleteOption = async (event) => {
+            try {
+
+                const options = {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization":
+                            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmEzM2RmMDdmZmQ0OTAwMTU4YTdhOWEiLCJpYXQiOjE2NTQ4NjUzOTMsImV4cCI6MTY1NjA3NDk5M30.2OFqiZlYFI8_pway6VuyyVMq_FoFqoK3aOgNgDlGntw",
+                    }
+                }
+                const response = await fetch(
+                    "https://striveschool-api.herokuapp.com/api/movies" + movieId, options
+                )
+                const deleteObj = await response.json()
+            }
+            catch (error) {
+                console.log(error);
+            }
+        }
+    </script>
+</body>
+
+</html>
