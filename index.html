@@ -127,20 +127,20 @@
                     const scifiMovie = document.getElementById(`${genre}`)
 
                     scifiMovie.innerHTML += `<div class="col-md-2">
-                                            <div class="card mb-5">
+                                                <a href="/backoffice.html?_id=${movie._id}&category=${movie.category}"><div class="card mb-5">
                                                 <img src=${movie.imageUrl} class="card-img-top movie-images" alt= ${movie.name}>
                                                 <div class="card-body">
                                                     <h5 class="card-title">${movie.name}</h5>
                                                     <p class="card-text">${movie.description}</p>
                                                 </div>
                                             </div>
+                                            </a>
                                           </div>`;
                 });
             } catch (error) {
                 console.log(error);
             }
         };
-
 
         window.onload = () => {
             displayMovies("Sci-Fi")
