@@ -27,9 +27,8 @@
             vertical-align: middle;
         }
 
-        .movie-images {
-            width: auto;
-            height: 252px;
+        img:hover {
+            box-shadow: 5px 3px 5px grey;
         }
 
         p {
@@ -37,13 +36,32 @@
             font-size: 10px;
         }
 
-        a {
-            color: rgb(11, 11, 11);
+        a,
+        span {
+            font-size: 15px;
+            color: grey;
+        }
+
+        footer {
+            width: 700px;
         }
 
         a:hover {
-            color: inherit;
-            text-decoration: none;
+            color: grey;
+        }
+
+        .service-btn {
+            background-color: #202020;
+            color: rgb(146, 146, 146);
+            border: 1px solid rgb(146, 146, 146);
+        }
+
+        button {
+            background-color: #141414;
+        }
+
+        .color-btn:hover {
+            background: linear-gradient(270deg, #cddc39, #4caf50, #00bcd4);
         }
     </style>
 </head>
@@ -94,20 +112,80 @@
             </div>
         </div>
     </nav>
-    <div class="container">
-        <h2 class="text-white">Sci-Fi Movies</h2>
-        <div class="row" id="Sci-Fi">
+    <div class="container mb-1 py-2">
+        <div class="d-flex align-items-center px-0">
+            <h1 class="text-white">TV Shows</h1>
+            <div class="dropdown d-inline-block mx-4">
+                <button class="btn dropdown-toggle text-white border" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-expanded="false">
+                    Genres
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#" data-toggle="collapse" data-target="#scifiMovies"
+                        aria-expanded="false" aria-controls="scifiMovies">Sci-Fi</a>
+                    <a class="dropdown-item" href="#" data-toggle="collapse" data-target="#crimeMovies"
+                        aria-expanded="false" aria-controls="crimeMovies">Crime</a>
+                    <a class="dropdown-item" href="#" data-toggle="collapse" data-target="#actionMovies"
+                        aria-expanded="false" aria-controls="actionMovies">Action</a>
+                </div>
+            </div>
+            <div class="ml-auto mr-3">
+                <i class="bi bi-list icons border"></i>
+                <i class="bi bi-list icons border"></i>
+            </div>
         </div>
     </div>
-    <div class="container">
-        <h2 class="text-white">Crime Movies</h2>
-        <div class="row" id="Crime">
+    <section id="scifiMovies">
+        <div class="container mb-5">
+            <h3 class="text-white">Sci-Fi Movies</h3>
+            <div class="row mx-n1 mt-1" id="Sci-Fi">
+            </div>
         </div>
-    </div>
-    <div class="container">
-        <h2 class="text-white">Action Movies</h2>
-        <div class="row" id="Action">
+    </section>
+    <section id="crimeMovies">
+        <div class="container mb-5">
+            <h3 class="text-white">Crime Movies</h3>
+            <div class="row mx-n1 mt-1" id="Crime">
+            </div>
         </div>
+    </section>
+    <section id="actionMovies">
+        <div class="container mb-5">
+            <h3 class="text-white">Action Movies</h3>
+            <div class="row mx-n1 mt-1" id="Action">
+            </div>
+        </div>
+    </section>
+    <div class="container d-flex justify-content-center">
+        <footer class="mt-5">
+            <div class="icon">
+                <a href="#"><i class="color-btn bi bi-facebook footer-icons"></i></a>
+                <a href="#"><i class="bi bi-instagram footer-icons"></i></a>
+                <a href="#"><i class="bi bi-twitter footer-icons"></i></a>
+                <a href="#"><i class="bi bi-youtube footer-icons"></i></a>
+            </div>
+            <div class="row">
+                <div class="col-3 mb-2"><a href="#">Audio and subtitles</a></div>
+                <div class="col-3 mb-2"><a href="#">Audio Description</a></div>
+                <div class="col-3 mb-2"><a href="#">Help Center</a></div>
+                <div class="col-3 mb-2"><a href="#">Gift Cards</a></div>
+                <div class="col-3 mb-2"><a href="#">Media Center</a></div>
+                <div class="col-3 mb-2"><a href="#">Investor Realations</a></div>
+                <div class="col-3 mb-2"><a href="#">Jobs</a></div>
+                <div class="col-3 mb-2"><a href="#">Terms of Use</a></div>
+                <div class="col-3 mb-2"><a href="#">Privacy</a></div>
+                <div class="col-3 mb-2"><a href="#">Legal Notices</a></div>
+                <div class="col-3 mb-2"><a href="#">Cookies Preferences</a></div>
+                <div class="col-3 mb-2"><a href="#">Corporate Information</a></div>
+                <div class="col-3 mb-2"><a href="#">Contact Us</a></div>
+            </div>
+            <div>
+                <button class="service-btn my-3">Service Code</button>
+            </div>
+            <div>
+                <span>© 1997-2022 Netflix, Inc. </span><span>{7dca75fb-9334-4901-ba20-8dc79a39c0a6}</span>
+            </div>
+        </footer>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -135,15 +213,9 @@
                 movies.forEach((movie) => {
                     const scifiMovie = document.getElementById(`${genre}`)
 
-                    scifiMovie.innerHTML += `<div class="col-md-2">
+                    scifiMovie.innerHTML += `<div class="col-12 col-sm-6 col-md-4 col-lg-2 px-1">
                                                 <a href="/backoffice.html?_id=${movie._id}&category=${movie.category}">
-                                                    <div class="card mb-5">
-                                                        <img src=${movie.imageUrl} class="card-img-top movie-images" alt= ${movie.name}>
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">${movie.name}</h5>
-                                                            <p class="card-text">${movie.description}</p>
-                                                        </div>
-                                                    </div>
+                                                        <img src=${movie.imageUrl} class="card-img-top movie-images rounded" alt= ${movie.name}>
                                                 </a>
                                             </div>`;
                 });
